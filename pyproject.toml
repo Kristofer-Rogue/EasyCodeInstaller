@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "easycodeinstaller"
 version = "0.1.0"
-description = ""
+description = "Приложение установки всего необходимого для прохождения курса по Python от EasyCode"
 authors = ["Kristofer Rogue <ice99dragon@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+requests = "^2.32.3"
 
 
 [build-system]
