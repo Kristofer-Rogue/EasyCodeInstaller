@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import scrolledtext
 import threading
 from installer import Installer
+from logger import setup_logger
 
 
 class InstallerApp:
@@ -13,8 +14,11 @@ class InstallerApp:
         """
         self.root = root
         self.root.title("Установка программ")
-        self.installer = Installer()
         self.create_widgets()
+
+        # Настройка логгера
+        self.logger = setup_logger(self.log)
+        self.installer = Installer(self.logger)
 
     def create_widgets(self) -> None:
         """
