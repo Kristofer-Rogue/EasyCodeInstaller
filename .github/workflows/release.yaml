@@ -1,0 +1,69 @@
+name: Build and Release
+
+# Определяем, когда запускать рабочий процесс
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    # Шаг 1: Checkout кода
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Шаг 2: Установка Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    # Шаг 3: Установка Poetry
+    - name: Install Poetry
+      run: |
+        pip install poetry
+
+    # Шаг 4: Установка зависимостей через Poetry
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    # Шаг 5: Получение версии из Poetry
+    - name: Get version from poetry
+      id: get_version
+      run: |
+          $VERSION = (poetry version -s)
+          echo "VERSION=$VERSION" >> $env:GITHUB_ENV
+
+    - name: Debug version from poetry
+      run: |
+        echo "VERSION: ${{ env.VERSION }}"
+
+
+      # Шаг 6: Компиляция программы через PyInstaller с использованием main.spec
+    - name: Compile with PyInstaller
+      run: |
+        pip install pyinstaller
+        pyinstaller main.spec
+
+    # Шаг 7: Загрузка артефакта сборки
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: compiled-program
+        path: dist/setup.exe
+
+    # Шаг 8: Создание релиза на GitHub и добавление артефакта
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/setup.exe
+        tag_name: v${{ env.VERSION }}
+        name: "Release v${{ env.VERSION }}"
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
