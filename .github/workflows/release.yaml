@@ -4,6 +4,7 @@ name: Build and Release
 on:
   push:
     branches:
+      - master
       - hotfix
 
 jobs:
@@ -38,9 +39,9 @@ jobs:
           $VERSION = (poetry version -s)
           echo "VERSION=$VERSION" >> $env:GITHUB_ENV
 
-      - name: Debug version from poetry
+      - name: List installed libraries
         run: |
-          echo "VERSION: ${{ env.VERSION }}"
+          poetry show --tree
         
 
         # Шаг 6: Компиляция программы через PyInstaller с использованием main.spec
