@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easycodeinstaller"
-version = "0.1.0"
+version = "1.0.0"
 description = "Приложение установки всего необходимого для прохождения курса по Python от EasyCode"
 authors = ["Kristofer Rogue <ice99dragon@gmail.com>"]
 readme = "README.md"
