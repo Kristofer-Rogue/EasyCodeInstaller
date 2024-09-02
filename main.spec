@@ -6,7 +6,10 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[('img', 'img')],
-    hiddenimports=['customtkinter'],
+    hiddenimports=['customtkinter',
+        'PIL.ImageFilter',  # Если используете PIL
+        'customtkinter.windows.ctk_tk',
+        'customtkinter.themes', ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
