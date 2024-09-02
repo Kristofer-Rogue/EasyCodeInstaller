@@ -1,3 +1,5 @@
+import os
+import shutil
 import threading
 import tkinter as tk
 
@@ -162,6 +164,9 @@ class InstallerApp:
         """
         Завершение работы программы.
         """
+        if os.path.exists(config.TEMP_DIR):
+            shutil.rmtree(config.TEMP_DIR)
+            self.logger.info("Временная папка удалена.")
         self.root.quit()
 
 
