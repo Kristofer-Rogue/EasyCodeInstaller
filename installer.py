@@ -1,8 +1,10 @@
+import logging
 import os
 import subprocess
+
 import requests
+
 import config
-import logging
 
 
 class Installer:
@@ -83,7 +85,6 @@ class Installer:
         """
         Начало процесса установки.
         """
-        self.logger.info("Начало установки...")
 
         python_installer_path = os.path.join(self.temp_dir, "python_installer.exe")
         vscode_installer_path = os.path.join(self.temp_dir, "vscode_installer.exe")
