@@ -42,6 +42,15 @@ jobs:
       - name: List installed libraries
         run: |
           poetry show --tree
+
+      - name: Check pyinstaller (pip)
+        run: |
+          pyinstaller --version
+
+      - name: Check pyinstaller (poetry)
+        run: |
+          poetry run pyinstaller --version
+        
         
 
         # Шаг 6: Компиляция программы через PyInstaller с использованием main.spec
