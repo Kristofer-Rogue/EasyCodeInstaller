@@ -96,7 +96,7 @@ class InstallerApp:
 
         # Использование grid для расположения элементов
         container.grid_rowconfigure(0, weight=1)  # Распределение пространства по вертикали
-        container.grid_rowconfigure(1, weight=0)  # Распределение пространства по вертикали
+        container.grid_rowconfigure(1, weight=1)  # Распределение пространства по вертикали
         container.grid_rowconfigure(2, weight=0)  # Распределение пространства по вертикали
         container.grid_columnconfigure(0, weight=1)  # Распределение пространства по горизонтали
 
@@ -152,12 +152,11 @@ class InstallerApp:
         """
         self.logger.info("Начало установки...")
 
-        # Имитация установки программ
+        self.root.update_idletasks()
         self.installer.start_installation()
 
         self.logger.info("Установка завершена.")
 
-        # Активировать кнопку завершения
         self.finish_button.configure(state=tk.NORMAL)
 
     def finish_installation(self) -> None:

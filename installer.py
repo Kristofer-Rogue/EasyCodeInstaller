@@ -23,7 +23,7 @@ class Installer:
 
     def download_file(self, url: str, dest: str) -> None:
         """
-        Загрузка файла по указанному URL.
+        Скачивание файла по указанному URL.
 
         :param url: URL для загрузки.
         :param dest: Путь к месту сохранения файла.
