@@ -43,10 +43,6 @@ jobs:
         run: |
           poetry show --tree
 
-      - name: Check pyinstaller (pip)
-        run: |
-          pyinstaller --version
-
       - name: Check pyinstaller (poetry)
         run: |
           poetry run pyinstaller --version
@@ -56,7 +52,7 @@ jobs:
         # Шаг 6: Компиляция программы через PyInstaller с использованием main.spec
       - name: Compile with PyInstaller
         run: |
-          pyinstaller main.spec
+          poetry run pyinstaller main.spec
 
       # Шаг 7: Загрузка артефакта сборки
       - name: Upload artifact
