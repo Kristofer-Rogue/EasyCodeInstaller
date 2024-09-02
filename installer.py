@@ -1,6 +1,7 @@
 import logging
 import os
 import subprocess
+from typing import Callable
 
 import requests
 
@@ -8,15 +9,17 @@ import config
 
 
 class Installer:
-    def __init__(self, logger: logging.Logger) -> None:
+    def __init__(self, logger: logging.Logger, progress_callback: Callable[[float], None]) -> None:
         """
         Инициализация класса для установки программ.
 
         :param logger: Логгер для вывода сообщений.
+        :param progress_callback: Коллбэк для обновления прогресс-бара.
         """
         self.logger = logger
         self.temp_dir = config.TEMP_DIR
-        os.makedirs(self.temp_dir, exist_ok=True)
+
+        self.progress_callback = progress_callback
 
     def download_file(self, url: str, dest: str) -> None:
         """
@@ -85,17 +88,22 @@ class Installer:
         """
         Начало процесса установки.
         """
+        os.makedirs(self.temp_dir, exist_ok=True)
+        self.progress_callback(0.1)
 
         python_installer_path = os.path.join(self.temp_dir, "python_installer.exe")
         vscode_installer_path = os.path.join(self.temp_dir, "vscode_installer.exe")
 
         self.download_file(config.INSTALLERS["python"], python_installer_path)
         self.download_file(config.INSTALLERS["vscode"], vscode_installer_path)
+        self.progress_callback(0.2)
 
         self.install_python(python_installer_path)
+        self.progress_callback(0.4)
         self.install_vscode(vscode_installer_path)
+        self.progress_callback(0.6)
 
         self.install_python_packages()
+        self.progress_callback(0.8)
         self.install_vscode_extensions()
-
-        self.logger.info("Установка завершена.")
+        self.progress_callback(1)
