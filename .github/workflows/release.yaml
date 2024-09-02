@@ -47,12 +47,11 @@ jobs:
         # Шаг 6: Компиляция программы через PyInstaller с использованием main.spec
       - name: Compile with PyInstaller
         run: |
-          pip install pyinstaller
           pyinstaller main.spec
 
       # Шаг 7: Загрузка артефакта сборки
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: compiled-program
           path: dist/setup.exe
