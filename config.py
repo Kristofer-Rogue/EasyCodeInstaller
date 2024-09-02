@@ -1,3 +1,12 @@
+# Текстовая конфигурация
+WELCOME_MESSAGE = "Эта программа поможет вам установить все необходимое ПО для прохождения курса по Python от Easy Code"
+BUTTON_TEXT_INSTALL = "Начать установку"
+BUTTON_TEXT_FINISH = "Завершить установку"
+
+# Графическая конфигурация
+LOGO_PATH = "img/easy_code_logo.png"
+ICON_PATH = "img/easy_code_icon.ico"
+
 # URL для загрузки установщиков
 INSTALLERS = {
     "python": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe",
