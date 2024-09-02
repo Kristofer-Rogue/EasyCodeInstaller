@@ -50,3 +50,8 @@
     ```
 
 Это создаст папку `dist`, в которой будет находиться ваш скомпилированный исполняемый файл.
+
+## Скриншоты программы:
+
+![frame1](https://github.com/user-attachments/assets/8a0c7829-a4ac-46d4-a2ba-ce15cad94c34)
+![frame2](https://github.com/user-attachments/assets/bb33adb3-c73d-4afe-bac4-9b2452e5c694)
