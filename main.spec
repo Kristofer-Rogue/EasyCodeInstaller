@@ -39,4 +39,7 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     uac_admin=True,
+    manifest='easy_code_installer.manifest',
+    version='version_info.txt',
+    icon='img/easy_code_icon.ico'
 )
