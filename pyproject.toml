@@ -2,16 +2,15 @@
 name = "easycodeinstaller"
 version = "1.0.2"
 description = "Приложение установки всего необходимого для прохождения курса по Python от EasyCode"
-authors = ["Kristofer Rogue <ice99dragon@gmail.com>"]
+authors = ["Kristofer Rogue <ice99dragon@gmail.com> / KostenkoV-V <viktorkos_02@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12, <3.14"
+python = ">=3.8, <3.11"
 requests = "^2.32.3"
-pyinstaller = "^6.10.0"
-customtkinter = "^5.2.2"
-pillow = "^10.4.0"
-
+pyinstaller = "5.0.0"
+customtkinter = "5.0.0"
+pillow = "9.4.0"
 
 [build-system]
 requires = ["poetry-core"]

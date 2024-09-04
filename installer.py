@@ -1,12 +1,12 @@
-import logging
+import platform
 import os
 import subprocess
+import logging
 from typing import Callable
 
 import requests
 
 import config
-
 
 class Installer:
     def __init__(self, logger: logging.Logger, progress_callback: Callable[[float], None]) -> None:
@@ -18,7 +18,6 @@ class Installer:
         """
         self.logger = logger
         self.temp_dir = config.TEMP_DIR
-
         self.progress_callback = progress_callback
 
     def download_file(self, url: str, dest: str) -> None:
@@ -91,11 +90,24 @@ class Installer:
         os.makedirs(self.temp_dir, exist_ok=True)
         self.progress_callback(0.1)
 
+        # Определяем версию ОС
+        os_version = platform.release()
+        
+        if os_version == '7':
+            python_installer_url = config.INSTALLERS["python_win7"]
+            vscode_installer_url = config.INSTALLERS["vscode_win7"]
+        elif os_version in ['10', '11']:
+            python_installer_url = config.INSTALLERS["python_win10_11"]
+            vscode_installer_url = config.INSTALLERS["vscode_win10_11"]
+        else:
+            self.logger.error(f"Не поддерживаемая версия ОС: Windows {os_version}")
+            return
+
         python_installer_path = os.path.join(self.temp_dir, "python_installer.exe")
         vscode_installer_path = os.path.join(self.temp_dir, "vscode_installer.exe")
 
-        self.download_file(config.INSTALLERS["python"], python_installer_path)
-        self.download_file(config.INSTALLERS["vscode"], vscode_installer_path)
+        self.download_file(python_installer_url, python_installer_path)
+        self.download_file(vscode_installer_url, vscode_installer_path)
         self.progress_callback(0.2)
 
         self.install_python(python_installer_path)

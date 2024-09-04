@@ -1,21 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 a = Analysis(
     ['main.py'],
-    pathex=[],
+    pathex=['.'],  
     binaries=[],
     datas=[('img', 'img')],
-    hiddenimports=['customtkinter',
-        'PIL.ImageFilter',  # Если используете PIL
-        'customtkinter.windows.ctk_tk',
-        'customtkinter.themes', ],
+    hiddenimports=['customtkinter'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
     noarchive=False,
-    optimize=2,
+
 )
 pyz = PYZ(a.pure)
 
@@ -25,8 +21,8 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='setup',
-    debug=False,
+    name='easycode_install',
+    debug=False, 
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,

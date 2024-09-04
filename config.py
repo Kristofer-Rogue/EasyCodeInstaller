@@ -9,15 +9,16 @@ ICON_PATH = "img/easy_code_icon.ico"
 
 # URL для загрузки установщиков
 INSTALLERS = {
-    "python": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe",
-    "vscode": "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64",
+    "python_win7": "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe",  # Python 3.8 для Windows 7
+    "python_win10_11": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe",  # Python 3.11.9 для Windows 10/11
+    "vscode_win7": "https://update.code.visualstudio.com/1.70.0/win32-x64/stable",  # VS Code 1.70 для Windows 7
+    "vscode_win10_11": "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64",  # Последняя версия VS Code для Windows 10/11
 }
-
 # Расширения VSCode и их URL
-VSCODE_EXTENSIONS = {"ms-python.python"}
+VSCODE_EXTENSIONS = {"ms-python.python","ms-vsliveshare.vsliveshare", "ms-vscode.live-server"}
 
 # Пакеты Python
-PYTHON_PACKAGES = ["requests", "pygame", "aiogram==2.25.2"]
+PYTHON_PACKAGES = ["requests", "pygame", "aiogram==2.25.2", "emoji", "Flask"]
 
 # Путь для временного хранения скачанных файлов
 TEMP_DIR = "temp_downloads"

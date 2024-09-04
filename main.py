@@ -100,7 +100,7 @@ class InstallerApp:
         container.grid_rowconfigure(2, weight=0)  # Распределение пространства по вертикали
         container.grid_columnconfigure(0, weight=1)  # Распределение пространства по горизонтали
 
-        self.status_text = ctk.CTkTextbox(container, wrap='word')
+        self.status_text = ctk.CTkTextbox(container, wrap='word', state=tk.DISABLED)
         self.status_text.grid(row=0, column=0, pady=10, padx=20, sticky='nsew')  # Заполняет пространство
 
         self.progress_bar = ctk.CTkProgressBar(container)
@@ -135,8 +135,11 @@ class InstallerApp:
 
         :param message: Сообщение для вывода.
         """
+
+        self.status_text.configure(state=tk.NORMAL) #разблокируем текстовое поле для записи
         self.status_text.insert(ctk.END, message + "\n")
         self.status_text.yview(ctk.END)
+        self.status_text.configure(state=tk.DISABLED) #снова блокирует текстовое поле
 
     def update_progress_bar(self, value: float) -> None:
         """
